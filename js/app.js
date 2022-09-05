@@ -1,38 +1,52 @@
-let chatHistory = document.getElementById("chatHistoria");
+function criaMsg(classe, msg) {
+  
+  let chatbox = document.getElementById("chatbox");
+  console.log(chatbox)
+  let divMsg = document.createElement("div");
+  divMsg.className = classe;
+  chatbox.append(divMsg);
+  let texto = document.createElement("p");
+  texto.appendChild(document.createTextNode(msg))
+  divMsg.appendChild(texto);
+  let br = document.createElement("br");
+  texto.append(br);
+}
+//criaMsg("message my_msg", "oi");
+//criaMsg("message friend_msg", "oi, tchau");
 
-//lógica mensagem usuario logado
-function mensagemUsuarioLogado() {
-  let li = document.createElement("li");
-  li.className = "clearfix";
-  chatHistory.appendChild(li);
-  let divMessage = document.createElement("div");
-  divMessage.className = "message-data text-right";
-  li.appendChild(divMessage);
-  let spanHora = document.createElement("span");
-  spanHora.className = "message-data-time";
-  spanHora.innerHTML = "22:49";
-  divMessage.appendChild(spanHora);
-  let divTxtMessage = document.createElement("div");
-  divTxtMessage.className = "message other-message float-right";
-  divTxtMessage.innerHTML = "gfjbdsfgs";
-  li.appendChild(divTxtMessage);
+function mensagens(usuario, destinatario, senha) {
+  console.log("carrega mensagens");
+  const dbRef = firebase.database().ref("conversas");
+  dbRef.child("individual").once('value').then(function(snapshot){
+    document.getElementById("")
+    snapshot.forEach(element => {
+      if (senha == element.val().senha) {
+        if (element.val().emissor == usuario) {
+          criaMsg("message my_msg", element.val().message);
+          
+        } else if (element.val().emissor == destinatario) {
+          criaMsg("message friend_msg", element.val().message);
+        } else if (element.val().destinatario == usuario) {
+          criaMsg("message my_msg", element.val().message);
+        } else if (element.val().destinatario == destinatario) {
+          criaMsg("message friend_msg", element.val().message);
+        }
+        
+      }
+    });
+      
+  
+  })
+
 }
 
-function mensagemUsuarioReceptor(){
-    let li = document.createElement("li");
-    li.className = "clearfix";
-    chatHistory.appendChild(li);
-    let divMessage = document.createElement("div");
-    divMessage.className = "message-data text-right";
-    li.appendChild(divMessage);
-    let spanHora = document.createElement("span");
-    spanHora.className = "message-data-time";
-    spanHora.innerHTML = "22:49";
-    divMessage.appendChild(spanHora);
-    let divTxtMessage = document.createElement("div");
-    divTxtMessage.className = "message my-message";
-    divTxtMessage.innerHTML = "gfjbdsfgs";
-    li.appendChild(divTxtMessage);
+function removerElementos() {
+  var e = document.querySelector("chatbox");
+  
+  //e.firstElementChild can be used.
+  var child = e.lastElementChild; 
+  while (child) {
+      e.removeChild(child);
+      child = e.lastElementChild;
+  }
 }
-mensagemUsuarioLogado();
-mensagemUsuarioReceptor();
