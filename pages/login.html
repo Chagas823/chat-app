@@ -1,42 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/login.css">
- 
-    <title>Login</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/login.css" />
+    <title>Menu</title>
     
 </head>
+
 <body>
-    
-    <div class="container">
-        <div class="box">
-            <h4>Login</h4>
-            <form action="">
-                <input type="email" name="email" id="emailEntrada" placeholder="Email">
-                <br>
-                <br>
-                <input type="password" name="senha" id="senhaEntrada" placeholder="Senha">
-                <br>
-                <br>
-                <div id="btnEntrar" >Entrar</div>
-                <br>
-                <br>
-                <br>
-               
-            </form>
-            <div id="parteDoOU">
-                <div id="linha1"></div>
-                <p>Ou</p>
-            </div>
-        </div>
+    <div class="login">
+ 
+            <h1>Login</h1>
+            <input type="text" id="emailEntrada"  placeholder="Email"></br></br>
+            <input type="password" id="senhaEntrada"  placeholder="Password"></br></br></br>
+            <button class="btnEntrar" id="btnEntrar">Entrar</button></br></br>
+            <fieldset class="Ou">
+                <legend>Ou</legend>
+            </fieldset>
+            <button class="botaoGoogle"><img src="../images/google.png" height="20" width="20" /> Entrar Com
+                Google</button></br></br></br>
+            <h3 id="cadastrar">Ainda não possui conta? <u>Cadastrar-Se</u> </h3></br></br>
+        
     </div>
     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-database.js"></script>
+    <script src="js/firebase.js"></script>
+  
     <script src="../js/firebase.js"></script>
+    <script src="../js/chat.js"></script>
     <script src="../js/auth.js"></script>
 </body>
+
 </html>

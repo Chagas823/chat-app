@@ -3,7 +3,7 @@ let destinatario = "Sales";
 console.log(JSON.parse(sessionStorage.getItem("usuario")));
 
 let entradaMsg = document.getElementById("entradaMsg");
-let enviar = document.getElementById("enviar");
+let enviar = document.getElementById("btnEntrar");
 enviar.onclick = (()=>{
     let data = new Date();
     criaMsg("message my_msg", entradaMsg.value, data.getMinutes() + ':' + data.getSeconds());
