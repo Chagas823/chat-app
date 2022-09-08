@@ -1,11 +1,16 @@
-let usuario = prompt("digite o nome do usuario");
-let destinatario = prompt("digite o nome do remetente");
+let usuario = "Chagas";
+let destinatario = "Sales";
+console.log(JSON.parse(sessionStorage.getItem("usuario")));
 
 let entradaMsg = document.getElementById("entradaMsg");
 let enviar = document.getElementById("enviar");
-enviar.addEventListener("click", ()=>{
-    criaMsg("message my_msg", entradaMsg.value);
-    salvarNoBanco(destinatario, usuario, entradaMsg, senha)
+enviar.onclick = (()=>{
+    let data = new Date();
+    criaMsg("message my_msg", entradaMsg.value, data.getMinutes() + ':' + data.getSeconds());
+    salvarNoBanco(destinatario, usuario, entradaMsg, senha);
+    setTimeout(()=>{
+      enviar.value = "";
+    }, 1000)
 });
 let senha ;
 procurarConversas(usuario, destinatario);
@@ -29,14 +34,14 @@ function procurarConversas(usuario, destinatario) {
         password = element.val().senha;
         
         if (element.val().emissor == usuario) {
-          criaMsg("message my_msg", element.val().message);
+          criaMsg("message my_msg", element.val().message, element.val().hora);
           
         } else if (element.val().emissor == destinatario) {
-          criaMsg("message friend_msg", element.val().message);
+          criaMsg("message friend_msg", element.val().message, element.val().hora);
         } else if (element.val().destinatario == usuario) {
-          criaMsg("message my_msg", element.val().message);
+          criaMsg("message my_msg", element.val().message, element.val().hora);
         } else if (element.val().destinatario == destinatario) {
-          criaMsg("message friend_msg", element.val().message);
+          criaMsg("message friend_msg", element.val().message, element.val().hora);
         }
         
     
@@ -102,10 +107,12 @@ function procurarConversas(usuario, destinatario) {
     }
     
     setTimeout(()=>{
+      var dataMsg = new Date();
       let data = { destinatario: destinatario,
         emissor: usuario,
         message: entrada.value,
-        data: Date(),
+        dataMsg: dataMsg.getDate() + '/' + (dataMsg.getMonth() + 1) + '/' + dataMsg.getFullYear(),
+        hora: dataMsg.getMinutes() + ':' + dataMsg.getSeconds(),
         senha: senha}
         console.log(data)
       firebase.database().ref("conversas").child("individual").push(data).then(function (){
@@ -144,7 +151,5 @@ function procurarConversas(usuario, destinatario) {
    mensagensEmTemporeal
   })
   
-  function mensagensEmTemporeal(usuario, destinatario, data){
-
-  }
   
+

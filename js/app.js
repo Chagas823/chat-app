@@ -1,12 +1,15 @@
-function criaMsg(classe, msg) {
+function criaMsg(classe, msg, hora) {
   
   let chatbox = document.getElementById("chatbox");
-  console.log(chatbox)
+ 
   let divMsg = document.createElement("div");
   divMsg.className = classe;
   chatbox.append(divMsg);
   let texto = document.createElement("p");
   texto.appendChild(document.createTextNode(msg))
+  let horario = document.createElement("span");
+  horario.innerHTML = hora;
+  texto.appendChild(horario);
   divMsg.appendChild(texto);
   let br = document.createElement("br");
   texto.append(br);
