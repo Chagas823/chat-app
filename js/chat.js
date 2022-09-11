@@ -1,9 +1,43 @@
-let usuario = "Chagas";
+let usuario
 let destinatario = "Sales";
-console.log(JSON.parse(sessionStorage.getItem("usuario")));
+let imgPerfil = document.getElementById("imgPerfil");
+console.log(usuario);
+
+
+
+let carregarUsuario = new Promise((resolve, reject)=>{
+  firebase.auth().onAuthStateChanged((user) =>{
+    if(user){
+        console.log(user);
+        resolve(user);
+        const dbRef = firebase.database().ref("usuarios");
+        dbRef.child(firebase.auth().currentUser.uid).once('value').then(function(snapshot){
+          snapshot.forEach(element => {
+            console.log(element)
+            imgPerfil.src = element.val().imgLink;
+          });
+         
+      })
+    }else{
+        reject(null);
+    }
+  });
+});
+carregarUsuario.then((data)=>{
+  console.log(data);
+  usuario = data.email;
+  console.log(usuario);
+}).catch((data)=>{
+  console.log(data);
+})
+setTimeout(()=>{
+let user = firebase.auth().currentUser;
+console.log(user.displayName);
+
+}, 1000)
 
 let entradaMsg = document.getElementById("entradaMsg");
-let enviar = document.getElementById("btnEntrar");
+let enviar = document.getElementById("enviarMsg");
 enviar.onclick = (()=>{
     let data = new Date();
     criaMsg("message my_msg", entradaMsg.value, data.getMinutes() + ':' + data.getSeconds());
@@ -13,7 +47,9 @@ enviar.onclick = (()=>{
     }, 1000)
 });
 let senha ;
-procurarConversas(usuario, destinatario);
+setTimeout(()=>{
+  procurarConversas(usuario, destinatario);
+}, 1500)
 function procurarConversas(usuario, destinatario) {
   console.log("função chamada");
   let senha = "";
@@ -146,10 +182,15 @@ function procurarConversas(usuario, destinatario) {
       }
   })
   })
-  carrega.then((data)=>{
-    console.log(data)
-   mensagensEmTemporeal
-  })
+
+    carrega.then((data)=>{
+      console.log(data)
+   
+    })
+
   
   
+
+
+
 

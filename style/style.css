@@ -6,7 +6,7 @@
   }
   
   body {
-    display: flex;
+    display: contents;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -56,7 +56,7 @@
     position: relative;
     width: 100%;
     height: 60px;
-    background: #ededed;
+    background: #DABCF9;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -202,7 +202,7 @@
   }
   
   .message_p b {
-    background: #06d755;
+    background: #d006d7;
     color: #fff;
     min-width: 20px;
     height: 20px;
@@ -263,7 +263,7 @@
     text-align: right;
     max-width: 65%;
     padding: 12px;
-    background: #dcf8c8;
+    background: #b900f1;
     border-radius: 10px;
     font-size: 0.9em;
   }
@@ -277,8 +277,8 @@
     height: 20px;
     background: linear-gradient(
       135deg,
-      #dcf8c6 0%,
-      #dcf8c6 50%,
+      #b900f1 0%,
+      #b900f1 50%,
       transparent 50%,
       transparent
     );
@@ -324,7 +324,7 @@
     position: relative;
     width: 100%;
     height: 60px;
-    background: #f0f0f0;
+    background: #FEF1F1;
     padding: 15px;
     display: flex;
     justify-content: space-between;
