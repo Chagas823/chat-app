@@ -11,9 +11,11 @@ function login(email, senha){
     firebase.auth().signInWithEmailAndPassword(email.value, senha.value).then(function (user){
         console.log("acessou com sucesso");
         console.log(user);
-        sessionStorage.setItem("email", email);
-        sessionStorage.setItem("senha", senha);
-        sessionStorage.setItem("usuario", JSON.stringify(user));
+        sessionStorage.setItem("email", email.value);
+        sessionStorage.setItem("senha", senha.value);
+        console.log(user.email);
+        sessionStorage.setItem("usuario", JSON.stringify(user.email));
+        
         setTimeout(()=>{
             window.location.href = "../index.html";
         }, 500)
