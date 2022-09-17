@@ -58,7 +58,12 @@ function conversasRecentes(fotoPerfil, userName, tempo, mensagem){
     let chatList = document.getElementById("chatList");
     let block = document.createElement("div");
     block.className = "block";
+    block.id = "barraconversa"
     chatList.append(block);
+    block.addEventListener("click", ()=>{
+      console.log("clicado");
+      chat(userName)
+    })
     let imgBox = document.createElement("div");
     imgBox.className = "imgBox";
     block.append(imgBox);
@@ -92,4 +97,3 @@ function conversasRecentes(fotoPerfil, userName, tempo, mensagem){
     p.innerHTML = mensagem;
     message_p.append(p);
 }
-conversasRecentes("images/google.png","Sales","12", "aa")

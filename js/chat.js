@@ -1,5 +1,6 @@
-let usuario
-let destinatario = "Sales";
+function chat(userDesti){
+  let usuario
+let destinatario = userDesti;
 let imgPerfil = document.getElementById("imgPerfil");
 console.log(usuario);
 
@@ -68,7 +69,7 @@ function procurarConversas(usuario, destinatario) {
           element.val().destinatario == usuario)
       ) {
         password = element.val().senha;
-        
+       
         if (element.val().emissor == usuario) {
           criaMsg("message my_msg", element.val().message, element.val().hora);
           
@@ -194,3 +195,7 @@ function procurarConversas(usuario, destinatario) {
 
 
 
+
+}
+chat("fd912735@gmail.com");
+carregaBarraDeConversas();
