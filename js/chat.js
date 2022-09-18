@@ -5,17 +5,22 @@ let imgPerfil = document.getElementById("imgPerfil");
 console.log(usuario);
 
 
-
+let userName = document.getElementById("userName");
+                   
+userName.innerHTML = destinatario + '<br /><span id="userOnline">online</span>';
 let carregarUsuario = new Promise((resolve, reject)=>{
   firebase.auth().onAuthStateChanged((user) =>{
     if(user){
-        console.log(user);
+        console.log(user.email)
         resolve(user);
         const dbRef = firebase.database().ref("usuarios");
-        dbRef.child(firebase.auth().currentUser.uid).once('value').then(function(snapshot){
+        dbRef.child("info").once('value').then(function(snapshot){
+          //carrega imagem de perfil
           snapshot.forEach(element => {
-            console.log(element)
-            imgPerfil.src = element.val().imgLink;
+            console.log()
+            if(user.email == element.val().email){
+              imgPerfil.src = element.val().imgLink;
+            }
           });
          
       })
@@ -33,7 +38,7 @@ carregarUsuario.then((data)=>{
 })
 setTimeout(()=>{
 let user = firebase.auth().currentUser;
-console.log(user.displayName);
+
 
 }, 1000)
 
@@ -52,7 +57,7 @@ setTimeout(()=>{
   procurarConversas(usuario, destinatario);
 }, 1500)
 function procurarConversas(usuario, destinatario) {
-  console.log("função chamada");
+
   let senha = "";
   
   let contador = 0;
@@ -190,7 +195,29 @@ function procurarConversas(usuario, destinatario) {
     })
 
   
+    setTimeout(()=>{
+      firebase.database().ref('usuarios/info').once('value').then(function(snapshot) {
+          
+          let teste = snapshot.val();
+          snapshot.forEach(element => {
+              console.log(element.val())
+              if(element.val().email == destinatario){
+                  console.log(element.val().uid);
+                  document.getElementById("imgDestinatario").src = element.val().imgLink;
+                  firebase.database().ref('status/'+element.val().uid).on('value', function(snapshot){
+                    console.log(snapshot.val());
+                    let userOnline = document.getElementById("userOnline");
+                    userOnline.innerHTML = "";
+                    userOnline.innerHTML = snapshot.val().state
+                   
+                  });
+
+              }
+          });
   
+      })
+      console.log(vetorUsers)
+  }, 3000)
 
 
 
