@@ -10,7 +10,7 @@ function carregaBarraDeConversas(){
             const dbRef = firebase.database().ref("usuarios");
             dbRef.child(firebase.auth().currentUser.uid).once('value').then(function(snapshot){
               snapshot.forEach(element => {
-                console.log(element)
+                
                 
               });
              
@@ -21,11 +21,11 @@ function carregaBarraDeConversas(){
       });
     });
     carregarUsuario.then((data)=>{
-      console.log(data);
+      
       usuario = data.email;
       console.log(usuario);
     }).catch((data)=>{
-      console.log(data);
+      
     });
    
     const dbRef = firebase.database().ref("conversas");
@@ -69,9 +69,7 @@ function carregaBarraDeConversas(){
             }
             
         }
-        if(vetor[1] == 0){
-            console.log("é zero")
-        }
+        
         for (let index = 0; index < vetor.length; index++) {
             if(vetor[index] != 0){
                 if (vetor[index].emissor == usuario ) {

@@ -25,10 +25,12 @@ btnCadastrar.onclick = function (){
                 var data = {
                   imgLink : URL,
                   nome: nome.value,
-                  email: email.value
+                  email: email.value,
+                  uid: result.user.uid
                 }
-                firebase.database().ref("usuarios").child(firebase.auth().currentUser.uid).push(data).then(function (){
+                firebase.database().ref("usuarios").child("info").push(data).then(function (){
                   console.log("usuario cadastrado com sucesso ");
+                  console.log(result.user)
                 }).catch(function (error) {
                   console.log('erro ', error)
                 })
