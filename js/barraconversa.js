@@ -25,7 +25,7 @@ function carregaBarraDeConversas(){
       usuario = data.email;
       console.log(usuario);
     }).catch((data)=>{
-      
+      window.location.href = "pages/login.html"
     });
    
     const dbRef = firebase.database().ref("conversas");
