@@ -6,7 +6,7 @@ btn.onclick = ()=>{
         snapshot.forEach(element => {
             if(email.value == element.val().email){
                 document.getElementById("divMostrarUser").innerHTML = element.val().nome;
-                sessionStorage.setItem("email", element.val().email);
+                sessionStorage.setItem("email", element.val().email)
             }
         });
     })
