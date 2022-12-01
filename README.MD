@@ -7,5 +7,7 @@ Link Interfaces Figma: https://www.figma.com/file/3HMZ6FxqiqMwlsIxZ0sAit/Projeto
 
 Deploy da Aplicação:
 
-GitHub Pages: https://elimar-ximenes.github.io/Chat-de-Mensagens/
+GitHub Pages: https://elimar-ximenes.github.io/Chat-de-Mensagens
+
 Firebase Hosting: https://chat-app-projeto-integrador.web.app/pages/login.html
+
